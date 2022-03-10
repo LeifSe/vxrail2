@@ -359,7 +359,7 @@ os10_interface:
     admin: up
   ethernet 1/1/51:
     admin: up
-   ethernet 1/1/53:
+  ethernet 1/1/53:
     admin: up
     desc: Uplink to vxrail-SPINE-2 1/1/1
     ip_and_mask: 172.16.2.1/31
