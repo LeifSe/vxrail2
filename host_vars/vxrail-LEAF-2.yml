@@ -1,0 +1,1050 @@
+cli:
+  auth_pass: admin
+  authorize: true
+  host: '{{ ansible_host }}'
+  password: admin
+  username: admin
+hostname: vxrail-LEAF-2
+os10_bgp:
+  asn: 64625
+  best_path:
+    as_path: multipath-relax
+  graceful_restart: true
+  maxpath_ebgp: 2
+  neighbor:
+  - adv_interval: 1
+    fall_over: present
+    name: spine-leaf
+    timer: 3 9
+    type: peergroup
+  - address_family:
+    - allow_as_in: 1
+      type: ipv4
+    admin: up
+    adv_interval: 1
+    fall_over: present
+    ip: 172.16.1.2
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64600
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - allow_as_in: 1
+      type: ipv4
+    admin: up
+    adv_interval: 1
+    fall_over: present
+    ip: 172.16.2.2
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64600
+    timer: 3 9
+    type: ipv4
+  - admin: up
+    ip: 172.16.3.0
+    remote_asn: 64625
+    type: ipv4
+  - address_family:
+    - activate: false
+      type: ipv4
+    - activate: true
+      type: l2vpn
+    admin: up
+    adv_interval: 1
+    ebgp_multihop: 4
+    fall_over: present
+    ip: 10.0.1.1
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64600
+    send_community:
+    - state: present
+      type: extended
+    sender_loop_detect: false
+    timer: 3 9
+    type: ipv4
+  - address_family:
+    - activate: false
+      type: ipv4
+    - activate: true
+      type: l2vpn
+    admin: up
+    adv_interval: 1
+    ebgp_multihop: 4
+    fall_over: present
+    ip: 10.0.1.2
+    name: spine-leaf
+    peergroup: spine-leaf
+    remote_asn: 64600
+    send_community:
+    - state: present
+      type: extended
+    sender_loop_detect: false
+    timer: 3 9
+    type: ipv4
+  redistribute:
+  - address_type: ipv4
+    route_map_name: spine-leaf
+    route_type: connected
+  router_id: 10.0.2.2
+  vrfs:
+  - name: Vrf1
+    redistribute:
+    - address_type: ipv4
+      route_type: l2vpn
+    - address_type: ipv4
+      route_map_name: deny_v4_host_routes
+      route_type: l2vpn
+    - address_type: ipv4
+      route_type: connected
+os10_interface:
+  ethernet 1/1/10:
+    admin: up
+    desc: Node-06_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/11:
+    admin: up
+    desc: Node-07_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/12:
+    admin: up
+    desc: Node-08_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/13:
+    admin: up
+    desc: Node-09_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/14:
+    admin: up
+    desc: Node-10_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/15:
+    admin: up
+    desc: Node-11_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/16:
+    admin: up
+    desc: Node-12_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/17:
+    admin: up
+    desc: Node-13_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/18:
+    admin: up
+    desc: Node-14_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/19:
+    admin: up
+    desc: Node-15_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/1:1:
+    admin: up
+    desc: Uplink
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/20:
+    admin: up
+    desc: Node-16_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/21:
+    admin: up
+    desc: Node-17_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/22:
+    admin: up
+    desc: Node-18_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/23:
+    admin: up
+    desc: Node-19_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/24:
+    admin: up
+    desc: Node-20_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/25:
+    admin: up
+    desc: Node-21_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/26:
+    admin: up
+    desc: Node-22_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/27:
+    admin: up
+    desc: Node-23_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/28:
+    admin: up
+    desc: Node-24_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/29:
+    admin: up
+  ethernet 1/1/2:1:
+    admin: up
+    desc: Uplink
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/30:
+    admin: up
+  ethernet 1/1/31:
+    admin: up
+    desc: Node-03_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/32:
+    admin: up
+    desc: Node-04_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/33:
+    admin: up
+    desc: Node-05_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/34:
+    admin: up
+    desc: Node-06_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/35:
+    admin: up
+    desc: Node-07_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/36:
+    admin: up
+    desc: Node-08_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/37:
+    admin: up
+    desc: Node-09_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/38:
+    admin: up
+    desc: Node-10_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/39:
+    admin: up
+    desc: Node-11_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/3:1:
+    admin: up
+  ethernet 1/1/40:
+    admin: up
+    desc: Node-12_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/41:
+    admin: up
+    desc: Node-13_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/42:
+    admin: up
+    desc: Node-14_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/43:
+    admin: up
+    desc: Node-15_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/44:
+    admin: up
+    desc: Node-16_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/45:
+    admin: up
+    desc: Node-17_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/46:
+    admin: up
+    desc: Node-18_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/47:
+    admin: up
+    desc: VLT to vxrail-LEAF-1 1/1/47
+    switchport: false
+  ethernet 1/1/48:
+    admin: up
+    desc: VLT to vxrail-LEAF-1 1/1/48
+    switchport: false
+  ethernet 1/1/49:1:
+    admin: up
+    desc: Node-19_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/49:2:
+    admin: up
+    desc: Node-20_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/49:3:
+    admin: up
+    desc: Node-21_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/49:4:
+    admin: up
+    desc: Node-22_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/4:1:
+    admin: up
+  ethernet 1/1/5:
+    admin: up
+  ethernet 1/1/50:1:
+    admin: up
+    desc: Node-23_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/50:2:
+    admin: up
+    desc: Node-24_vmnic3-PCIe-NIC1-25G-2
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/50:3:
+    admin: up
+  ethernet 1/1/50:4:
+    admin: up
+  ethernet 1/1/51:
+    admin: up
+  ethernet 1/1/53:
+    admin: up
+    desc: Uplink to vxrail-SPINE-2 1/1/2
+    ip_and_mask: 172.16.2.3/31
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/54:
+    admin: up
+    desc: Uplink to vxrail-SPINE-1 1/1/2
+    ip_and_mask: 172.16.1.3/31
+    mtu: 9216
+    switchport: false
+  ethernet 1/1/6:
+    admin: up
+  ethernet 1/1/7:
+    admin: up
+    desc: Node-03_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/8:
+    admin: up
+    desc: Node-04_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  ethernet 1/1/9:
+    admin: up
+    desc: Node-05_vmnic2-PCIe-NIC1-25G-1
+    mtu: 9216
+    portmode: trunk
+    switchport: true
+  loopback 0:
+    admin: up
+    ip_and_mask: 10.0.2.2/32
+  loopback 1:
+    admin: up
+    ip_and_mask: 1.0.1.1/32
+os10_lag:
+  Po 12:
+    admin: up
+    state: present
+    type: dynamic
+  Po 13:
+    admin: up
+    state: present
+    type: dynamic
+  Po 14:
+    admin: up
+    state: present
+    type: dynamic
+  Po 15:
+    admin: up
+    state: present
+    type: dynamic
+  Po 16:
+    admin: up
+    state: present
+    type: dynamic
+  Po 17:
+    admin: up
+    state: present
+    type: dynamic
+  Po 18:
+    admin: up
+    state: present
+    type: dynamic
+  Po 19:
+    admin: up
+    state: present
+    type: dynamic
+  Po 20:
+    admin: up
+    state: present
+    type: dynamic
+  Po 21:
+    admin: up
+    state: present
+    type: dynamic
+  Po 22:
+    admin: up
+    state: present
+    type: dynamic
+  Po 23:
+    admin: up
+    state: present
+    type: dynamic
+  Po 24:
+    admin: up
+    state: present
+    type: dynamic
+  Po 25:
+    admin: up
+    state: present
+    type: dynamic
+  Po 26:
+    admin: up
+    state: present
+    type: dynamic
+  Po 27:
+    admin: up
+    state: present
+    type: dynamic
+  Po 28:
+    admin: up
+    state: present
+    type: dynamic
+  Po 29:
+    admin: up
+    state: present
+    type: dynamic
+  Po 30:
+    admin: up
+    state: present
+    type: dynamic
+  Po 31:
+    admin: up
+    state: present
+    type: dynamic
+  Po 32:
+    admin: up
+    state: present
+    type: dynamic
+  Po 33:
+    admin: up
+    state: present
+    type: dynamic
+os10_lldp:
+  enable: true
+os10_prefix_list:
+- entries:
+  - condition_list:
+    - condition: ge
+      prelen: 32
+    mask: '0'
+    net_num: 0.0.0.0
+    number: 10
+    permit: true
+    state: present
+  - condition_list:
+    - condition: ge
+      prelen: 31
+    mask: '0'
+    net_num: 0.0.0.0
+    number: 20
+    permit: true
+    state: present
+  name: deny_v4_host_routes
+  state: present
+  type: ipv4
+- entries:
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 10.0.0.0
+    number: 30
+    permit: true
+    state: present
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 1.0.0.0
+    number: 40
+    permit: true
+    state: present
+  - condition_list:
+    - condition: ge
+      prelen: '24'
+    mask: '16'
+    net_num: 172.16.0.0
+    number: 50
+    permit: true
+    state: present
+  name: spine-leaf
+  state: present
+  type: ipv4
+os10_route_map:
+  route_map:
+  - match:
+    - ip_type: ipv4
+      prefix_list: spine-leaf
+    name: spine-leaf
+    permit: true
+    seq_num: 10
+  - match:
+    - ip_type: ipv4
+      prefix_list: deny_v4_host_routes
+    name: deny_v4_host_routes
+    permit: true
+    seq_num: 10
+os10_system:
+  hostname: vxrail-LEAF-2
+os10_vlan:
+  Vlan 101:
+    description: VxRail_1_Management
+    ip_and_mask: null
+    state: present
+    untagged_members:
+    - port: ethernet 1/1/7
+      state: present
+    - port: ethernet 1/1/8
+      state: present
+    - port: ethernet 1/1/9
+      state: present
+    - port: ethernet 1/1/10
+      state: present
+    - port: ethernet 1/1/11
+      state: present
+    - port: ethernet 1/1/12
+      state: present
+    - port: ethernet 1/1/13
+      state: present
+    - port: ethernet 1/1/14
+      state: present
+    - port: ethernet 1/1/15
+      state: present
+    - port: ethernet 1/1/16
+      state: present
+    - port: ethernet 1/1/17
+      state: present
+    - port: ethernet 1/1/18
+      state: present
+    - port: ethernet 1/1/19
+      state: present
+    - port: ethernet 1/1/20
+      state: present
+    - port: ethernet 1/1/21
+      state: present
+    - port: ethernet 1/1/22
+      state: present
+    - port: ethernet 1/1/23
+      state: present
+    - port: ethernet 1/1/24
+      state: present
+    - port: ethernet 1/1/25
+      state: present
+    - port: ethernet 1/1/26
+      state: present
+    - port: ethernet 1/1/27
+      state: present
+    - port: ethernet 1/1/28
+      state: present
+  Vlan 102:
+    description: VxRail_1_vSAN
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: Po 12
+      state: present
+    - port: Po 13
+      state: present
+    - port: Po 14
+      state: present
+    - port: Po 15
+      state: present
+    - port: Po 16
+      state: present
+    - port: Po 17
+      state: present
+    - port: Po 18
+      state: present
+    - port: Po 19
+      state: present
+    - port: Po 20
+      state: present
+    - port: Po 21
+      state: present
+    - port: Po 22
+      state: present
+    - port: Po 23
+      state: present
+    - port: Po 24
+      state: present
+    - port: Po 25
+      state: present
+    - port: Po 26
+      state: present
+    - port: Po 27
+      state: present
+    - port: Po 28
+      state: present
+    - port: Po 29
+      state: present
+    - port: Po 30
+      state: present
+    - port: Po 31
+      state: present
+    - port: Po 32
+      state: present
+    - port: Po 33
+      state: present
+  Vlan 103:
+    description: VxRail_1_vMotion
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: Po 12
+      state: present
+    - port: Po 13
+      state: present
+    - port: Po 14
+      state: present
+    - port: Po 15
+      state: present
+    - port: Po 16
+      state: present
+    - port: Po 17
+      state: present
+    - port: Po 18
+      state: present
+    - port: Po 19
+      state: present
+    - port: Po 20
+      state: present
+    - port: Po 21
+      state: present
+    - port: Po 22
+      state: present
+    - port: Po 23
+      state: present
+    - port: Po 24
+      state: present
+    - port: Po 25
+      state: present
+    - port: Po 26
+      state: present
+    - port: Po 27
+      state: present
+    - port: Po 28
+      state: present
+    - port: Po 29
+      state: present
+    - port: Po 30
+      state: present
+    - port: Po 31
+      state: present
+    - port: Po 32
+      state: present
+    - port: Po 33
+      state: present
+  Vlan 104:
+    description: VxRail_1_vmNetwork_1
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: ethernet 1/1/7
+      state: present
+    - port: ethernet 1/1/8
+      state: present
+    - port: ethernet 1/1/9
+      state: present
+    - port: ethernet 1/1/10
+      state: present
+    - port: ethernet 1/1/11
+      state: present
+    - port: ethernet 1/1/12
+      state: present
+    - port: ethernet 1/1/13
+      state: present
+    - port: ethernet 1/1/14
+      state: present
+    - port: ethernet 1/1/15
+      state: present
+    - port: ethernet 1/1/16
+      state: present
+    - port: ethernet 1/1/17
+      state: present
+    - port: ethernet 1/1/18
+      state: present
+    - port: ethernet 1/1/19
+      state: present
+    - port: ethernet 1/1/20
+      state: present
+    - port: ethernet 1/1/21
+      state: present
+    - port: ethernet 1/1/22
+      state: present
+    - port: ethernet 1/1/23
+      state: present
+    - port: ethernet 1/1/24
+      state: present
+    - port: ethernet 1/1/25
+      state: present
+    - port: ethernet 1/1/26
+      state: present
+    - port: ethernet 1/1/27
+      state: present
+    - port: ethernet 1/1/28
+      state: present
+  Vlan 105:
+    description: VxRail_1_vmNetwork_2
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: ethernet 1/1/7
+      state: present
+    - port: ethernet 1/1/8
+      state: present
+    - port: ethernet 1/1/9
+      state: present
+    - port: ethernet 1/1/10
+      state: present
+    - port: ethernet 1/1/11
+      state: present
+    - port: ethernet 1/1/12
+      state: present
+    - port: ethernet 1/1/13
+      state: present
+    - port: ethernet 1/1/14
+      state: present
+    - port: ethernet 1/1/15
+      state: present
+    - port: ethernet 1/1/16
+      state: present
+    - port: ethernet 1/1/17
+      state: present
+    - port: ethernet 1/1/18
+      state: present
+    - port: ethernet 1/1/19
+      state: present
+    - port: ethernet 1/1/20
+      state: present
+    - port: ethernet 1/1/21
+      state: present
+    - port: ethernet 1/1/22
+      state: present
+    - port: ethernet 1/1/23
+      state: present
+    - port: ethernet 1/1/24
+      state: present
+    - port: ethernet 1/1/25
+      state: present
+    - port: ethernet 1/1/26
+      state: present
+    - port: ethernet 1/1/27
+      state: present
+    - port: ethernet 1/1/28
+      state: present
+  Vlan 200:
+    description: external vlan
+    ip_and_mask: 10.10.0.2/16
+    state: present
+    tagged_members:
+    - port: ethernet 1/1/1:1
+      state: present
+    - port: ethernet 1/1/2:1
+      state: present
+  Vlan 3939:
+    description: VxRail_1_pvtMgmt
+    ip_and_mask: null
+    state: present
+    tagged_members:
+    - port: ethernet 1/1/7
+      state: present
+    - port: ethernet 1/1/8
+      state: present
+    - port: ethernet 1/1/9
+      state: present
+    - port: ethernet 1/1/10
+      state: present
+    - port: ethernet 1/1/11
+      state: present
+    - port: ethernet 1/1/12
+      state: present
+    - port: ethernet 1/1/13
+      state: present
+    - port: ethernet 1/1/14
+      state: present
+    - port: ethernet 1/1/15
+      state: present
+    - port: ethernet 1/1/16
+      state: present
+    - port: ethernet 1/1/17
+      state: present
+    - port: ethernet 1/1/18
+      state: present
+    - port: ethernet 1/1/19
+      state: present
+    - port: ethernet 1/1/20
+      state: present
+    - port: ethernet 1/1/21
+      state: present
+    - port: ethernet 1/1/22
+      state: present
+    - port: ethernet 1/1/23
+      state: present
+    - port: ethernet 1/1/24
+      state: present
+    - port: ethernet 1/1/25
+      state: present
+    - port: ethernet 1/1/26
+      state: present
+    - port: ethernet 1/1/27
+      state: present
+    - port: ethernet 1/1/28
+      state: present
+  Vlan 4000:
+    description: iBGP_link
+    ip_and_mask: 172.16.3.1/31
+    state: present
+os10_vlt:
+  discovery_intf: 1/1/47-1/1/48
+  discovery_intf_state: present
+  domain: 127
+  peer_routing: true
+  vlt_mac: 00:00:00:00:00:01
+  vlt_peers:
+    Po 12:
+      peer_lag: 12
+    Po 13:
+      peer_lag: 13
+    Po 14:
+      peer_lag: 14
+    Po 15:
+      peer_lag: 15
+    Po 16:
+      peer_lag: 16
+    Po 17:
+      peer_lag: 17
+    Po 18:
+      peer_lag: 18
+    Po 19:
+      peer_lag: 19
+    Po 20:
+      peer_lag: 20
+    Po 21:
+      peer_lag: 21
+    Po 22:
+      peer_lag: 22
+    Po 23:
+      peer_lag: 23
+    Po 24:
+      peer_lag: 24
+    Po 25:
+      peer_lag: 25
+    Po 26:
+      peer_lag: 26
+    Po 27:
+      peer_lag: 27
+    Po 28:
+      peer_lag: 28
+    Po 29:
+      peer_lag: 29
+    Po 30:
+      peer_lag: 30
+    Po 31:
+      peer_lag: 31
+    Po 32:
+      peer_lag: 32
+    Po 33:
+      peer_lag: 33
+os10_xstp:
+  enable: true
+  intf:
+    Po 12:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 13:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 14:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 15:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 16:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 17:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 18:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 19:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 20:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 21:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 22:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 23:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 24:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 25:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 26:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 27:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 28:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 29:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 30:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 31:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 32:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    Po 33:
+      bpdu_guard: true
+      edge_port: true
+      guard: root
+    ethernet 1/1/10:
+      edge_port: true
+    ethernet 1/1/11:
+      edge_port: true
+    ethernet 1/1/12:
+      edge_port: true
+    ethernet 1/1/13:
+      edge_port: true
+    ethernet 1/1/14:
+      edge_port: true
+    ethernet 1/1/15:
+      edge_port: true
+    ethernet 1/1/16:
+      edge_port: true
+    ethernet 1/1/17:
+      edge_port: true
+    ethernet 1/1/18:
+      edge_port: true
+    ethernet 1/1/19:
+      edge_port: true
+    ethernet 1/1/20:
+      edge_port: true
+    ethernet 1/1/21:
+      edge_port: true
+    ethernet 1/1/22:
+      edge_port: true
+    ethernet 1/1/23:
+      edge_port: true
+    ethernet 1/1/24:
+      edge_port: true
+    ethernet 1/1/25:
+      edge_port: true
+    ethernet 1/1/26:
+      edge_port: true
+    ethernet 1/1/27:
+      edge_port: true
+    ethernet 1/1/28:
+      edge_port: true
+    ethernet 1/1/7:
+      edge_port: true
+    ethernet 1/1/8:
+      edge_port: true
+    ethernet 1/1/9:
+      edge_port: true
+  type: rstp
